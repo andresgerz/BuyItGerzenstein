@@ -4,14 +4,13 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link,
-  useRouteMatch,
-  useParams
 } from "react-router-dom";
 import Home from '../pages/Home.js';
 import Discounts from '../pages/Discounts.js';
 import Categories from '../pages/Categories.js';
 import Contact from '../pages/Contact.js';
+import Cart from '../pages/Cart.js';
+import CartWidget from './CartWidget.js';
 
 
 const NavBar = () => {  
@@ -32,7 +31,7 @@ const NavBar = () => {
               <Nav.Link href="/contact">Contact</Nav.Link>
             </Nav>
             <Nav>
-              <Nav.Link href="#deets">Cart</Nav.Link>
+              <Nav.Link href="/cart"><CartWidget /></Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Navbar>
@@ -49,6 +48,9 @@ const NavBar = () => {
           </Route>
           <Route path="/contact">
             <Contact />
+          </Route>
+          <Route path="/cart">
+            <Cart />
           </Route>
         </Switch>
       </div>
