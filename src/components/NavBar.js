@@ -5,12 +5,14 @@ import {
   Switch,
   Route,
 } from "react-router-dom";
-import Home from '../pages/Home.js';
-import Discounts from '../pages/Discounts.js';
-import Categories from '../pages/Categories.js';
-import Contact from '../pages/Contact.js';
-import Cart from '../pages/Cart.js';
-import CartWidget from './CartWidget.js';
+
+
+import ItemListContainer from '../containers/ItemListContainer';
+import ItemDetailContainer from '../containers/ItemDetailContainer';
+import Cart from '../pages/Cart';
+import Contact from '../pages/Contact';
+
+
 
 
 const NavBar = () => {  
@@ -19,32 +21,30 @@ const NavBar = () => {
     <Router>
       <div>
         <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-          <Navbar.Brand href="/home">Buy It</Navbar.Brand>
+          <Navbar.Brand href="/">Buy It</Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="mr-auto">
-              <Nav.Link href="/home">Home</Nav.Link>
-              <NavDropdown title="Products" id="collasible-nav-dropdown">
-              <NavDropdown.Item href="/products/categories">Categories</NavDropdown.Item>
-              <NavDropdown.Item href="/products/discounts">Discounts</NavDropdown.Item>
-              </NavDropdown>
+              <Nav.Link href="/">Home</Nav.Link>
+              <Nav.Link href="/category/:id">Category</Nav.Link>
+              <Nav.Link href="/item/:id">Item</Nav.Link>
               <Nav.Link href="/contact">Contact</Nav.Link>
             </Nav>
             <Nav>
-              <Nav.Link href="/cart"><CartWidget /></Nav.Link>
+              <Nav.Link href="/cart">Cart</Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Navbar>
 
         <Switch>
-          <Route path="/home">
-            <Home />
+          <Route path="/">
+            <ItemListContainer />
           </Route>
-          <Route path="/products/categories">
-            <Categories />
+          <Route path="/category/:id">
+            <ItemListContainer />
           </Route>
-          <Route path="/products/discounts">
-            <Discounts />
+          <Route path="/item/:id">
+            <ItemDetailContainer />
           </Route>
           <Route path="/contact">
             <Contact />
