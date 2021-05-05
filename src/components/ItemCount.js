@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 import './ItemCount.css';
 
-export default function ItemCount({ stock, initial, addOn}) {
+export default function ItemCount({ stock, initial, liftingChange}) {
 
   const [counter, setCounter] = useState(initial);
 
@@ -16,7 +16,7 @@ export default function ItemCount({ stock, initial, addOn}) {
   }
 
   function addOn() {
-
+    liftingChange(counter);
     console.table({"counter":  counter});
   }
 

@@ -1,8 +1,9 @@
+import { BrowserRouter as Router,Switch,Route } from "react-router-dom";
 import './App.css';
 import NavBar from './components/NavBar';
 import ItemListContainer from './containers/ItemListContainer';
 import ItemDetailContainer from './containers/ItemDetailContainer';
-import { BrowserRouter as Router,Switch,Route } from "react-router-dom";
+import Cart from './pages/Cart';
 
 import db from './database.js';
 
@@ -22,6 +23,9 @@ function App() {
       </Route>
       <Route exact path="/item/:id">
         <ItemDetailContainer database={db}/>
+      </Route>
+      <Route exact path="/cart">
+        <Cart />
       </Route>
     </Switch>
     </div>
