@@ -16,8 +16,9 @@ export default function Item({info}) {
           {info.description}
         </Card.Text>
       </Card.Body>
+      <Link to={`/category/${info.category}`}>See {info.category}</Link>
+      <Link to={`/item/${info.id}`}>See details</Link>
       <ItemCount stock={5} initial={1} />
-      <Link to={`/item/:${info.id}`}></Link>
     </Card>
   )
 }
