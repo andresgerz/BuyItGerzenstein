@@ -21,7 +21,7 @@ export default function ItemCount({ stock, initial, addOn}) {
   }
 
   return (
-    <div className="counter m-5">
+    <div className="counter">
       <ul>
         <li onClick={counter > initial ? handleDecrement : null}>-</li>
         <li>{counter}</li>

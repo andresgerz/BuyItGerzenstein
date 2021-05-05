@@ -1,19 +1,31 @@
-import logo from './logo.svg';
 import './App.css';
 import NavBar from './components/NavBar';
 import ItemListContainer from './containers/ItemListContainer';
 import ItemDetailContainer from './containers/ItemDetailContainer';
+import { BrowserRouter as Router,Switch,Route } from "react-router-dom";
+
+import db from './database.js';
+
 
 function App() {
   return (
+  <Router>
     <div className="App">
-      <NavBar/>
-      <ItemDetailContainer />
-      <ItemListContainer greeting="Welcome to Buy It App" />
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-      </header>
+    <NavBar/>
+    
+    <Switch>
+      <Route exact path="/">
+        <ItemListContainer database={db} />
+      </Route>
+      <Route exact path="/category/:category">
+        <ItemListContainer database={db} greeting="Welcome to Buy It App" />
+      </Route>
+      <Route exact path="/item/:id">
+        <ItemDetailContainer database={db}/>
+      </Route>
+    </Switch>
     </div>
+  </Router>
   );
 }
 
