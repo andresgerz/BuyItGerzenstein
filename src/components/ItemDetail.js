@@ -1,12 +1,15 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import { Card, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import { useCartContext } from '../context/CartContext';
 
 import ItemCount from './ItemCount';
 
 const FinishBuy = () => <Link to={'/cart'}>Finish my buy</Link>;
 
 export default function ItemDetail({ itemDetails }) {
+  
+  const { addItem, removeItem, clear } = useCartContext(); 
   
   const [countItem, setCountItem] = useState(0);
 
@@ -33,8 +36,8 @@ export default function ItemDetail({ itemDetails }) {
           </Card.Body>
         </Card>
 
-        { countItem != 0  ? 
-          <FinishBuy />  : 
+        { countItem != 0                        ? 
+          <FinishBuy  onClick={addItem} />      :
           <ItemCount stock={5} initial={1} liftingChange={handleChange} />
         }
       </div>

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 import './ItemCount.css';
+import { Button } from 'react-bootstrap';
 
 export default function ItemCount({ stock, initial, liftingChange}) {
 
@@ -22,12 +23,16 @@ export default function ItemCount({ stock, initial, liftingChange}) {
 
   return (
     <div className="counter">
-      <ul>
-        <li onClick={counter > initial ? handleDecrement : null}>-</li>
+      <ul className="mb-3 mt-3">
+        <li onClick={counter > initial ? handleDecrement : null}>
+          <Button>-</Button>
+        </li>
         <li>{counter}</li>
-        <li onClick={ counter < stock ? handleIncrement : null}>+</li>
+        <li onClick={ counter < stock ? handleIncrement : null}>
+          <Button>+</Button>
+        </li>
       </ul>
-      <button className="btn btn-primary" onClick={counter != 0 ? addOn : null}>Agregar al carrito</button>
+      <button className="btn btn-success mb-3" onClick={counter != 0 ? addOn : null}>Agregar al carrito</button>
     </div>
   )
 }
