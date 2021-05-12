@@ -19,7 +19,7 @@ export default function ItemDetailContainer({database}) {
   }, [id])
 
   return (
-    <CartContextProvider value={{ value: [] }}>
+    <CartContextProvider>
       <h2>ItemDetailContainer</h2>
       <ItemDetail itemDetails={data} />
     </CartContextProvider>
