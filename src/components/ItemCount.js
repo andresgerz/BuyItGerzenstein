@@ -15,8 +15,10 @@ export default function ItemCount({ stock, initial, liftingChange}) {
     setCounter(counter + 1);
   }
 
-  function liftingChange(){
-    console.table({"counter":  counter});
+  function addOn() {
+    liftingChange(counter);
+    console.table({"counter": counter});
+
   }
 
   return (
@@ -30,7 +32,7 @@ export default function ItemCount({ stock, initial, liftingChange}) {
           <Button>+</Button>
         </li>
       </ul>
-      <Button className="btn btn-success mb-3" onClick={()=>liftingChange}>Agregar al carrito</Button>
+      <Button className="btn btn-success mb-3" onClick={counter != 0 ? addOn : null}>Agregar al carrito</Button>
     </div>
   )
 }

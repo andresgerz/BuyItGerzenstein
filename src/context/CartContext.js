@@ -1,51 +1,49 @@
 import React from 'react';
 
-const initialState = {
-  product: '', 
-  quantity: 0 
-};
- 
-const { Provider, Consumer }  = React.createContext([]);
+const CartContext = React.createContext();
 
+export default CartContext;
 
-function CartContextProvider({ initialState = [], children }) {
+export function CartContextProvider({ initialState = [], children }) {
   
   const [cart, setCart] = React.useState(initialState);
   
-  const getCart = (id) => { 
+ function getCart(id) { 
     return cart.find(item => item.id === id); 
   }
 
   // agregar cierta cantidad de un ítem al carrito
-  const isInCart = (id) => {
-    return id === undefined ? undefined : getCart !== undefined;
+  function isInCart(id) {
+    return id === undefined ? undefined : getCart(id) !== undefined;
   }
 
-  const addItem = (item, quantity, setCart) => {
+  function addItem(obj) {
+    console.log("cart context addItem.");
     
-    if (isInCart(item && item.id)) {
+    if (isInCart(obj && obj.id)) {
       return ;
     }
-
-    setCart([...cart, item])
+    
+    setCart([...cart, obj])
+    console.log(cart);
   }  
   
   // Remover un item del cart por usando su id
-  const removeItem = (id, card) => {
-    return card.filter(item => item.id !== id);
+  function removeItem(id) {
+    setCart(cart.filter(item => item.id !== id));
+    console.log("remove item");
   }
   
   // Remover todos los items
-  const clear = (setCart) => {
+  function clear() {
     setCart([]);
+    console.log("remove all items");
   }
 
   return(
-    <Provider value={[]}>
+    <CartContext.Provider value={{ addItem, removeItem, clear, cart }}>
       {children}
-    </Provider>
+    </CartContext.Provider>
   )
   
 } 
-
-export { CartContextProvider, Consumer as CartContextConsumer};

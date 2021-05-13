@@ -5,6 +5,16 @@ import ItemCount from '../components/ItemCount';
 
 export default function Item({info}) {
   
+   
+  const [countItem, setCountItem] = React.useState(0);
+
+ 
+  function handleChange(value) {
+    setCountItem(value);
+    console.log('handleChange Item');    
+  }
+
+
   return (
   
     <Card style={{ width: '200px' }}>
@@ -18,7 +28,7 @@ export default function Item({info}) {
       </Card.Body>
       <Link to={`/category/${info.category}`}>See {info.category}</Link>
       <Link to={`/item/${info.id}`}>See details</Link>
-      <ItemCount stock={5} initial={1} />
+      <ItemCount stock={5} initial={1} liftingChange={handleChange} />
     </Card>
   )
 }

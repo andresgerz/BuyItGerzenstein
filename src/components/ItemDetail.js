@@ -1,30 +1,45 @@
-import React, { useState, useEffect, useContext } from 'react'
+import React from 'react'
 import { Card, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import { CartContextConsumer, CartContextProvider }  from '../context/CartContext';
-
+import CartContext from '../context/CartContext';
 import ItemCount from './ItemCount';
 
-const FinishBuy = (add) => {
-  <CartContextConsumer>
-    <Link to={'/cart'} onClick={add}>Finish my buy</Link>
-  </CartContextConsumer>
+
+const FinishBuy = ({counter, product}) => {
+
+  const { addItem } = React.useContext(CartContext); 
+
+
+  function handleClick() {
+    console.log(counter);
+    addItem({id: product.id, item: product.title, counter});
+  }
+
+  return(
+    <Link to={'/cart'} 
+      className="btn btn-primary"
+      onClick={handleClick}
+      >
+      Finish my buy
+    </Link>
+  )
 }
 
 export default function ItemDetail({ itemDetails }) {
   
-  const { addItem, removeItem, clear } = CartContextProvider(); 
   
-  const [countItem, setCountItem] = useState(0);
+  const [countItem, setCountItem] = React.useState(0);
 
  
-  const addItem2 = () => {
-    console.log('add item');
+  function handleChange(value) {
+    setCountItem(value);
+    console.log('handleChange ItemDetail');
+
   }
 
 
   return (
-    <CartContextConsumer>{       
+    <>{       
       itemDetails === undefined                               ? 
       
       <h2 className="text-danger">This ID has not exit </h2>  :
@@ -41,11 +56,10 @@ export default function ItemDetail({ itemDetails }) {
           </Card.Body>
         </Card>
 
-        { countItem != 0                        ? 
-          <FinishBuy  add={addItem} />      :
-          <ItemCount stock={5} initial={1} liftingChange={addItem2} />
-        }
-      </div>
-    }</CartContextConsumer>
+        <ItemCount stock={5} initial={1} liftingChange={handleChange} />
+        <FinishBuy product={itemDetails} counter={countItem}/> 
+
+        </div>
+    }</>
     )
 }
