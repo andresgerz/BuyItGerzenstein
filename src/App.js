@@ -6,7 +6,7 @@ import ItemDetailContainer from './containers/ItemDetailContainer';
 import Cart from './pages/Cart';
 import { CartContextProvider } from './context/CartContext';
 
-import db from './database.js';
+//import db from './database.js';
 
 
 function App() {

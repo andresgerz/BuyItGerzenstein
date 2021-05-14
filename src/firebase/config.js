@@ -1,0 +1,19 @@
+import * as firebase from 'firebase/app';
+import 'firebase/firebase';
+
+const app = firebase.initializeApp({
+  apiKey: "AIzaSyC-4p637kk9z6qajwkGMyXnl0eu7sBerHo",
+  authDomain: "buyit-721e8.firebaseapp.com",
+  projectId: "buyit-721e8",
+  storageBucket: "buyit-721e8.appspot.com",
+  messagingSenderId: "25078390891",
+  appId: "1:25078390891:web:ffbef20bb0caafd747d12e"
+});
+   
+export function getFirebase() {
+  return app;
+}
+
+export function getFirebase() {
+  return firebase.firebase(app);
+}
