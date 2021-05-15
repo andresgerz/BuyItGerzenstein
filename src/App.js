@@ -5,8 +5,9 @@ import ItemListContainer from './containers/ItemListContainer';
 import ItemDetailContainer from './containers/ItemDetailContainer';
 import Cart from './pages/Cart';
 import { CartContextProvider } from './context/CartContext';
+import Footer from './components/Footer';
 
-//import db from './database.js';
+import db from './database.js';
 
 
 function App() {
@@ -30,6 +31,8 @@ function App() {
             <Cart />
           </Route>
         </Switch>
+
+        <Footer />
         </div>
       </Router>
     </CartContextProvider>

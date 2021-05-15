@@ -12,7 +12,7 @@ const FinishBuy = ({counter, product}) => {
 
   function handleClick() {
     console.log(counter);
-    addItem({id: product.id, item: product.title, counter});
+    addItem({...product, counter});
   }
 
   return(
@@ -24,6 +24,8 @@ const FinishBuy = ({counter, product}) => {
     </Link>
   )
 }
+
+export { FinishBuy };
 
 export default function ItemDetail({ itemDetails }) {
   
@@ -56,7 +58,7 @@ export default function ItemDetail({ itemDetails }) {
           </Card.Body>
         </Card>
 
-        <ItemCount stock={5} initial={1} liftingChange={handleChange} />
+        <ItemCount stock={itemDetails.stock} initial={1} liftingChange={handleChange} />
         <FinishBuy product={itemDetails} counter={countItem}/> 
 
         </div>

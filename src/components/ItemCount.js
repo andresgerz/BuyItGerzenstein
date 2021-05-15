@@ -30,8 +30,12 @@ export default function ItemCount({ stock, initial, liftingChange}) {
         <li>{counter}</li>
         <li onClick={ counter < stock ? handleIncrement : null}>
           <Button>+</Button>
+          
         </li>
       </ul>
+      { counter === stock && <div class="alert alert-warning" role="alert">
+        There is not more in stock!
+      </div>}
       <Button className="btn btn-success mb-3" onClick={counter != 0 ? addOn : null}>Agregar al carrito</Button>
     </div>
   )
