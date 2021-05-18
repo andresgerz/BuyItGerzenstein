@@ -1,12 +1,12 @@
-{
-  "database": [
+[
     {
       "id": "0",
       "title": "Notebook",
       "description": "Notebook description",
       "price": "55000",
       "pictureUrl": "https://via.placeholder.com/200",
-      "category": "home-appliances"
+      "category": "home-appliances",
+      "stock": "8"
     },
     {
       "id": "1",
@@ -14,7 +14,8 @@
       "description": "Computer description",
       "price": "80000",
       "pictureUrl": "https://via.placeholder.com/200",
-      "category": "home-appliances"
+      "category": "home-appliances",
+      "stock": "2"
     },
     {
       "id": "2",
@@ -22,7 +23,8 @@
       "description": "Smart TV description",
       "price": "70000",
       "pictureUrl": "https://via.placeholder.com/200",
-      "category": "home-appliances"
+      "category": "home-appliances",
+      "stock": "1"
     },
     {
       "id": "3",
@@ -30,7 +32,8 @@
       "description": "Phone description",
       "price": "40000",
       "pictureUrl": "https://via.placeholder.com/200",
-      "category": "home-appliances"
+      "category": "home-appliances",
+      "stock": "8"
     },
     {
       "id": "4",
@@ -39,6 +42,7 @@
       "price": "23000",
       "pictureUrl": "https://via.placeholder.com/200",
       "category": "furniture"
+     , "stock": "6"
     },
     {
       "id": "5",
@@ -46,7 +50,8 @@
       "description": "Desk description",
       "price": "19000",
       "pictureUrl": "https://via.placeholder.com/200",
-      "category": "furniture"
+      "category": "furniture",
+      "stock": "1"
     },
     {
       "id": "6",
@@ -54,7 +59,8 @@
       "description": "ESP-32 description",
       "price": "3000",
       "pictureUrl": "https://via.placeholder.com/200",
-      "category": "electronic"
+      "category": "electronic",
+      "stock": "1"
     },
     {
       "id": "7",
@@ -62,7 +68,7 @@
       "description": "ESP-8266 description",
       "price": "40000",
       "pictureUrl": "https://via.placeholder.com/200",
-      "category": "electronic"
+      "category": "electronic",
+      "stock": "3"
     }
   ]
-}

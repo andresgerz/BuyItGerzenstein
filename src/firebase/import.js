@@ -1,21 +1,22 @@
 // Imports
-const firestoreService = require('firestore-export-import');
-const firebaseConfig = require('./config.js');
-const serviceAccount = require('./serviceAccount.json');
 
-// JSON To Firestore
-const jsonToFirestore = async () => {
-  try {
-    console.log('Initialzing Firebase');
-    await firestoreService.initializeApp(serviceAccount, firebaseConfig.databaseURL);
-    console.log('Firebase Initialized');
+const admin = require('firebase-admin');
+const serviceAccount = require("./key_service_account.json");
+const data = require("../database.json");
+const collectionKey = "ItemCollection"; //Name of the collection
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount)
+});
+const firestore = admin.firestore();
+const settings = {timestampsInSnapshots: true};
+firestore.settings(settings);
 
-    await firestoreService.restore('../database.json');
-    console.log('Upload Success');
-  }
-  catch (error) {
-    console.log(error);
-  }
-};
-
-jsonToFirestore();
+if (data && (typeof data === "object")) {
+  Object.keys(data).forEach(docKey => {
+    firestore.collection(collectionKey).doc(docKey).set(data[docKey]).then((res) => {
+        console.log("Document " + docKey + " successfully written!");
+    }).catch((error) => {
+      console.error("Error writing document: ", error);
+    });
+  });
+}

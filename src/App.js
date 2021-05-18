@@ -1,3 +1,4 @@
+import React, { useEffect } from 'react';
 import { BrowserRouter as Router,Switch,Route } from "react-router-dom";
 import './App.css';
 import NavBar from './components/NavBar';
@@ -7,10 +8,17 @@ import Cart from './pages/Cart';
 import { CartContextProvider } from './context/CartContext';
 import Footer from './components/Footer';
 
+import getProducts from './services/getProducts';
+
+import { database } from './firebase/index';
+
+
+
 import db from './database.js';
 
 
 function App() {
+  
   return (
     <CartContextProvider>
       <Router>
