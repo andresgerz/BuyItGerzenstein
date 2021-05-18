@@ -12,7 +12,8 @@ export default function Item({info}) {
  
   function handleChange(value) {
     setCountItem(value);
-    console.log('handleChange Item');    
+    console.log('handleChange Item'); 
+    console.log(value);    
   }
 
 
@@ -29,8 +30,8 @@ export default function Item({info}) {
       </Card.Body>
       <Link to={`/category/${info.category}`}>See {info.category}</Link>
       <Link to={`/item/${info.id}`}>See details</Link>
-      <ItemCount stock={info.stock} initial={1} liftingChange={handleChange} />
-      <FinishBuy product={info} counter={countItem} />
+      <ItemCount item={info} initial={1} liftingChange={handleChange} />
+      
     </Card>
   )
 }

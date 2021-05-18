@@ -3,7 +3,6 @@ import CartWidget from '../components/CartWidget';
 
 const Cart = () => {
   
-  
   return(
     <div>
       <h1>Cart</h1>

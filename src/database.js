@@ -6,7 +6,7 @@ const database = [
     price: 55000,
     pictureUrl: "https://via.placeholder.com/200",
     category: "home-appliances",
-    stock: 1
+    stock: 0
   },
   {
     id: 1,

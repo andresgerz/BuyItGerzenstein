@@ -41,11 +41,7 @@ export default function ItemDetail({ itemDetails }) {
 
 
   return (
-    <>{       
-      itemDetails === undefined                               ? 
-      
-      <h2 className="text-danger">This ID has not exit </h2>  :
-      
+    <>
       <div>
         <Card className="m-auto" style={{ width: '200px' }}>
           <Card.Img variant="top" alt="No Image" src={itemDetails.pictureUrl} />
@@ -58,10 +54,8 @@ export default function ItemDetail({ itemDetails }) {
           </Card.Body>
         </Card>
 
-        <ItemCount stock={itemDetails.stock} initial={1} liftingChange={handleChange} />
-        <FinishBuy product={itemDetails} counter={countItem}/> 
-
+        <ItemCount item={itemDetails} initial={1} liftingChange={handleChange} />
         </div>
-    }</>
+    </>
     )
 }

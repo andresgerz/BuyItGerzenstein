@@ -1,4 +1,4 @@
-import react from 'react';
+import React from 'react';
 import { Nav, Navbar, NavDropdown } from 'react-bootstrap';
 import { Cart } from 'react-bootstrap-icons';
 import { Link } from 'react-router-dom';
@@ -6,7 +6,11 @@ import { Link } from 'react-router-dom';
 import logo from '../logo.svg';
 import './NavBar.css';
 
+import CartContext from '../context/CartContext';
+
 const NavBar = () => {  
+
+  const { totalItems } = React.useContext(CartContext); 
 
   return(
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
@@ -23,6 +27,7 @@ const NavBar = () => {
           <Link to="/contact">Contact</Link>
         </Nav>
         <Nav className="mr-2">
+          <p className="mr-2 text-white">{totalItems()} u.</p>
           <Link to="/cart"><Cart size={21} /></Link>
         </Nav>
       </Navbar.Collapse>

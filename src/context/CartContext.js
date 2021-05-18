@@ -15,24 +15,19 @@ export function CartContextProvider({ initialState = [], children }) {
   function allCart() {
     return cart;
   }
-/* 
-  // agregar cierta cantidad de un ítem al carrito
-  function isInCart(id) {
-    return id === undefined ? undefined : getCart(id) !== undefined;
-  }
- */
+
   function addItem(obj) {
     
-    console.log("context addItem.");
-    console.log(obj);
+    //console.log(obj);
     
     if (!getCart(obj.id)) {
       setCart([...cart, obj])
       
     } else {
-      setCart(cart.map(item => item.id === obj.id ? {...item, counter: obj.counter} : item));
+      console.log("context addItem 42.");
+      
+      setCart(cart.map(item => item.id === obj.id ? {...item, counter: item.counter + obj.counter} : item));
     }
-    
     
   }  
   
@@ -45,11 +40,27 @@ export function CartContextProvider({ initialState = [], children }) {
   // Remover todos los items
   function clear() {
     setCart([]);
-    console.log("remove all items");
+  }
+  
+  function totalItems() {
+    return cart.reduce((accum, current) => accum + current.counter, 0);
+  }
+  
+  function counterItem(id) {
+    console.log("counter item 42");
+    
+    if (getCart(id) != undefined) {
+      let item = getCart(id);
+      console.log(item);
+      return item.counter;
+
+    } else { 
+      return 1;
+    }
   }
 
   return(
-    <CartContext.Provider value={{ addItem, removeItem, clear, allCart, cart }}>
+    <CartContext.Provider value={{ addItem, removeItem, clear, allCart, cart, totalItems , counterItem}}>
       {children}
     </CartContext.Provider>
   )

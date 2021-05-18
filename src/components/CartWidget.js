@@ -6,11 +6,12 @@ import { Link } from 'react-router-dom';
 
 export default function CartWidget() {
   
-  const { allCart, removeItem, clear, cart } = React.useContext(CartContext); 
-  
+  const { allCart, removeItem, clear, cart, totalItems, counterItem } = React.useContext(CartContext); 
+
   function handleClick(id) {
     removeItem(id);
   }
+  
   console.log("cartwidget");
   console.log(cart.length);
   return(
@@ -41,7 +42,7 @@ export default function CartWidget() {
             {cart.map((product, index) =>
               <tr key={index}>
                 <td>{product.title}</td>
-                <td>{product.counter}</td>
+                <td>{counterItem(product.id)}</td>
                 <td>{product.price}</td>
                 <td>
                   <Button className="btn btn-danger" onClick={()=>handleClick(product.id)}>Delete</Button>
@@ -50,7 +51,7 @@ export default function CartWidget() {
             )}
               <tr>
                 <td>Total</td>
-                <td>{cart.reduce((accum, current) => accum + current.counter, 0)}</td>
+                <td>{totalItems()}</td>
                 <td>{cart.reduce((accum, current) => accum + (current.price * current.counter ), 0)}</td>
                 <td>
                   <Button className="btn btn-danger" onClick={()=>clear()}>Remove All Items
