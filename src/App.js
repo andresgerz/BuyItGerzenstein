@@ -13,11 +13,14 @@ import getProducts from './services/getProducts';
 import { database } from './firebase/index';
 
 
-
-import db from './database.js';
+//import db from './database.js';
 
 
 function App() {
+
+  const db = database;
+  const ItemCollection = db.collection('ItemCollection');
+  
   
   return (
     <CartContextProvider>
@@ -27,13 +30,13 @@ function App() {
         
         <Switch>
           <Route exact path="/">
-            <ItemListContainer database={db} />
+            <ItemListContainer database={ItemCollection} />
           </Route>
           <Route exact path="/category/:category">
-            <ItemListContainer database={db} greeting="Welcome to Buy It App" />
+            <ItemListContainer database={ItemCollection} greeting="Welcome to Buy It App" />
           </Route>
           <Route exact path="/item/:id">
-            <ItemDetailContainer database={db}/>
+            <ItemDetailContainer database={ItemCollection}/>
           </Route>
           <Route exact path="/cart">
             <Cart />
