@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router,Switch,Route } from "react-router-dom";
 import './App.css';
 import NavBar from './components/NavBar';
@@ -8,9 +8,10 @@ import Cart from './pages/Cart';
 import { CartContextProvider } from './context/CartContext';
 import Footer from './components/Footer';
 
-import getProducts from './services/getProducts';
-
+//import getProducts from './services/getProducts';
 import { database } from './firebase/index';
+
+//import { database } from './firebase/index';
 
 
 //import db from './database.js';
@@ -18,9 +19,25 @@ import { database } from './firebase/index';
 
 function App() {
 
-  const db = database;
-  const ItemCollection = db.collection('ItemCollection');
+  const [products, setProducts] = useState({});  
+  const [isLoading, setIsLoading] = useState(false);
+
+
+  useEffect(() => {
+    
+
+    const ItemCollection = database.collection('ItemCollection');
+
+    return ItemCollection.get().then((query) => {
+      setIsLoading(true);
+      setProducts(query.docs.map(doc => doc.data()));
+      })
+    
+
+  }, [])
   
+  console.log("test42");
+  console.log(products);
   
   return (
     <CartContextProvider>
@@ -30,13 +47,13 @@ function App() {
         
         <Switch>
           <Route exact path="/">
-            <ItemListContainer database={ItemCollection} />
+            <ItemListContainer database={isLoading ? products : []} />
           </Route>
           <Route exact path="/category/:category">
-            <ItemListContainer database={ItemCollection} greeting="Welcome to Buy It App" />
+            <ItemListContainer database={isLoading ? products : []} greeting="Welcome to Buy It App" />
           </Route>
           <Route exact path="/item/:id">
-            <ItemDetailContainer database={ItemCollection}/>
+            <ItemDetailContainer database={isLoading ? products : []}/>
           </Route>
           <Route exact path="/cart">
             <Cart />

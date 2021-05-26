@@ -1,21 +1,12 @@
-import { database } from '../firebase/index';
+/* import { database } from '../firebase/index';
   
 export default function getProducts() {
 
   const ItemCollection = database.collection('ItemCollection');
 
-  return ItemCollection
-    .get()
-    .then(snapshot => {
+  return ItemCollection.get().then((query) => {
 
-    
-      let products = snapshot.docs.map(doc => {
+    query.docs.map(doc => {return doc.data()});
 
-        let product = doc.data();
-        return {
-          id: doc.id,
-          ...product
-        }
-      })
     })
-}
+  } */

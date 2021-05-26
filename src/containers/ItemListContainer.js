@@ -2,11 +2,11 @@ import React, { useState, useEffect } from 'react';
 import ItemList from '../components/ItemList';
 import { useParams } from 'react-router-dom';
 import { Form, Button } from 'react-bootstrap';
-import getProducts from '../services/getProducts';
+//import getProducts from '../services/getProducts';
 
 export default function ItemListContainer({database, greeting}) {
-
-  const initialState = getProducts();
+  const initialState = database;
+  //const initialState = getProducts();
   const [data, setData] = useState(database);
   const { category } = useParams();
 
