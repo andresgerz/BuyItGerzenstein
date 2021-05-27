@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import ItemDetail from '../components/ItemDetail.js';
-
+import { getProductById } from '../services/index';
 
 export default function ItemDetailContainer({database}) {
 
@@ -11,9 +11,10 @@ export default function ItemDetailContainer({database}) {
 
   useEffect(() => {
    
-
-    let product = database.find(item => item.id === Number(id));
-    setData(product);
+    console.log("ItemDetailContainer");
+    console.log(database);
+   
+    getProductById(id).then(data => setData(data));
     
   }, [id])
 

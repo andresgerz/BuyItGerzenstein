@@ -2,34 +2,43 @@ import React, { useState, useEffect } from 'react';
 import ItemList from '../components/ItemList';
 import { useParams } from 'react-router-dom';
 import { Form, Button } from 'react-bootstrap';
-//import getProducts from '../services/getProducts';
+import { getAllProducts } from '../services/index';
 
-export default function ItemListContainer({database, greeting}) {
-  const initialState = database;
-  //const initialState = getProducts();
-  const [data, setData] = useState(database);
+export default function ItemListContainer({greeting}) {
+
+  
   const { category } = useParams();
 
+  const [products, setProducts] = useState([]);  
+ 
+  useEffect(() => {
+    console.log("424242");
+    
+    getAllProducts().then(data => setProducts(data));
+  }, [])
+
+  
 
   useEffect(() => {
 
-    console.log("test");
-    console.log(data);
-    if (category) {
+    
+    if (category != undefined) {
       
-      let product = data.filter(item => item.category === category);
-      setData(product);
+      let product = products.filter(item => item.category === category);
+      setProducts(product);
     }
 
     
   }, [category])
   
-  
+  console.log("datadata");
+  console.log(products);
+
   return(
     <div>
       <h2>ItemListContainer</h2>
       <h5>{greeting}</h5>
-      <ItemList dataItems={data} />
+      <ItemList dataItems={products} />
     </div>
   )
 }

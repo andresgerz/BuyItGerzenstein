@@ -36,9 +36,11 @@ export default function ItemDetail({ itemDetails }) {
   function handleChange(value) {
     setCountItem(value);
     console.log('handleChange ItemDetail');
-
   }
-
+ 
+ 
+  console.log("itemDetails"); 
+  console.log(itemDetails);
 
   return (
     <>
