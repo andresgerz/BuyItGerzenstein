@@ -12,7 +12,6 @@ export default function ItemListContainer({greeting}) {
   const [products, setProducts] = useState([]);  
  
   useEffect(() => {
-    console.log("424242");
     
     getAllProducts().then(data => setProducts(data));
   }, [])
@@ -30,9 +29,6 @@ export default function ItemListContainer({greeting}) {
 
     
   }, [category])
-  
-  console.log("datadata");
-  console.log(products);
 
   return(
     <div>

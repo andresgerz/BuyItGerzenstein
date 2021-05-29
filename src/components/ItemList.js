@@ -11,8 +11,7 @@ export default function ItemList({dataItems}) {
     
   }, [dataItems])
   
-  console.log("test---42");
-  console.log(dataItems);
+
   return (
     <div>
       <hr/>

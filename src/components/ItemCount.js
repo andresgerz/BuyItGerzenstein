@@ -31,7 +31,7 @@ export default function ItemCount({ item, liftingChange}) {
     <div className="counter">
       { item.stock === 0 ? 
 
-        <div class="alert alert-danger" role="alert">
+        <div className="alert alert-danger" role="alert">
         Attention! There is no {item.title} in stock!
         </div>               
                          :
@@ -46,7 +46,7 @@ export default function ItemCount({ item, liftingChange}) {
               
             </li>
           </ul>
-          { counter > item.stock ? <div class="alert alert-warning" role="alert">
+          { counter > item.stock ? <div className="alert alert-warning" role="alert">
               Attention! There is not more in stock!
               </div>
               :

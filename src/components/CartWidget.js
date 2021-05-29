@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { Cart } from 'react-bootstrap-icons';
 import { Table, Button, Form, Col } from 'react-bootstrap';
 import CartContext from '../context/CartContext';
@@ -8,26 +8,35 @@ import { useForm } from "react-hook-form";
 
 export default function CartWidget() {
   
-  const { register, handleSubmit, watch, formState: { errors } } = useForm();
-  console.log("React hooks state");
-  const [orders, setOrders] = useState([]);
+  const { register, handleSubmit, formState: { errors } } = useForm();
   
-  const { allCart, removeItem, clear, cart, totalItems, counterItem } = React.useContext(CartContext); 
+  const { removeItem, clear, cart, totalItems, counterItem } = React.useContext(CartContext); 
 
   const totalCost = cart.reduce((accum, current) => accum + (current.price * current.counter ), 0); 
-  
+ 
   const onSubmit = data => {
 
+    const filteredCard = [];
+    
+    cart.forEach(item => {
+      for (let i = 0; i < item.counter; i++) {
+        
+        filteredCard.push({
+          "id": item.id,
+          "title": item.title,
+          "price": item.price
+        })
+      }
+    }) 
+    
     createOrder({
       buyer: data, 
-      items: allCart,
+      items: filteredCard,
       date: new Date(),
       total: totalCost
-    })
-   /*  .then(data => {
-      setOrders([...orders, data]);
-    }) */;
-    
+    });
+     
+    clear();
   };
 
 
@@ -35,12 +44,12 @@ export default function CartWidget() {
     removeItem(id);
   }
 
- /*  useEffect(() => {
+  useEffect(() => {
+    console.log("OrderCollection");
     getAllOrders()
-    .then(data => setOrders(data));
-
-
-  }, []) */
+    .then(data => console.log(data));
+    
+  }, [totalCost])
 
   return(
     <>
@@ -71,8 +80,8 @@ export default function CartWidget() {
               {cart.map((product, index) =>
                 <tr key={index}>
                   <td>{product.title}</td>
-                  <td>{counterItem(product.id)}</td>
-                  <td>{product.price}</td>
+                  <td>{counterItem(product.id)} u.</td>
+                  <td>$ {product.price}</td>
                   <td>
                     <Button className="btn btn-danger" onClick={()=>handleRemove(product.id)}>Delete</Button>
                   </td>
@@ -80,8 +89,8 @@ export default function CartWidget() {
               )}
                 <tr>
                   <td>Total</td>
-                  <td>{totalItems()}</td>
-                  <td>{totalCost}</td>
+                  <td>{totalItems()} u.</td>
+                  <td>$ {totalCost}</td>
                   <td>
                     <Button className="btn btn-danger" onClick={()=>clear()}>Remove All Items
                     </Button>
@@ -135,11 +144,6 @@ export default function CartWidget() {
         </div>                         
       }
       </div>
-     /*  <ul>
-        {orders.map(item => {
-          return <li>{item}</li>
-        })}
-      </ul> */
     </>
     )
   }

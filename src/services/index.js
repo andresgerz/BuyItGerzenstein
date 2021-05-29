@@ -14,8 +14,8 @@ export async function getAllProducts() {
       console.log("There are not results.");
     }
 
-    return query.docs.map(doc => {
-      return  {id: doc.id, ...doc.data()};
+    return query.docs.map(item => {
+      return  {id: item.id, ...item.data()};
     });
     
   }).catch((error) => {
@@ -36,14 +36,8 @@ export async function getProductById(id) {
 }
 
 export async function createOrder(order) {
-  console.log("Create order");
-  const docRef = await ItemCollection.add(order);
+  const docRef = await OrderCollection.add(order);
 
-  const doc = await docRef.get();
-
-  const newProduct = { id: doc.id, ...doc.data() };
-  
-  return newProduct;
 }
 
 
@@ -55,8 +49,8 @@ export async function getAllOrders() {
       console.log("There are not results.");
     }
 
-    return query.docs.map(doc => {
-      return {id: doc.id, ...doc.data()};
+    return query.docs.map(order => {
+      return {id: order.id, ...order.data()};
     });
     
   }).catch((error) => {

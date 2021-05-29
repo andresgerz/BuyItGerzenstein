@@ -11,9 +11,6 @@ export default function ItemDetailContainer({database}) {
 
   useEffect(() => {
    
-    console.log("ItemDetailContainer");
-    console.log(database);
-   
     getProductById(id).then(data => setData(data));
     
   }, [id])
