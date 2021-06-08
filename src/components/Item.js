@@ -2,7 +2,6 @@ import React from 'react'
 import { Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import ItemCount from '../components/ItemCount';
-import { FinishBuy } from './ItemDetail';
 
 export default function Item({info}) {
   

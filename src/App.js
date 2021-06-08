@@ -7,6 +7,7 @@ import ItemDetailContainer from './containers/ItemDetailContainer';
 import Cart from './pages/Cart';
 import { CartContextProvider } from './context/CartContext';
 import Footer from './components/Footer';
+import Finished from './pages/Finished';
 
 //import getProducts from './services/getProducts';
 
@@ -37,6 +38,9 @@ function App() {
           </Route>
           <Route exact path="/cart">
             <Cart />
+          </Route>
+          <Route exact path="/finished">
+            <Finished />
           </Route>
         </Switch>
 

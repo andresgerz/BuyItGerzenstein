@@ -45,7 +45,7 @@ export default function CartWidget() {
   }
 
   useEffect(() => {
-    console.log("OrderCollection");
+
     getAllOrders()
     .then(data => console.log(data));
     
